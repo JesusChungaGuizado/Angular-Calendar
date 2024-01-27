@@ -1,0 +1,45 @@
+<section class="container d-flex justify-content-center">
+   <form  [formGroup]="loginForm"   class="col-12 col-sm-9 col-md-5 " >
+    <legend>Login</legend>
+    <div class="form-floating mb-3 mt-3">
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        <label for="email">Email</label>
+        @if (loginForm.controls.email.errors && loginForm.controls.email.touched ) {
+            <small class="text-danger">Ingrese un correo electronico correcto</small>
+        }
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" formControlName="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        <label for="pwd">Password</label>
+        @if (loginForm.controls.password.errors && loginForm.controls.password.touched) {
+            <small class="text-danger">La contraseña debe tener minimo 6 caracteres</small>
+        }
+    </div>
+    <div class="d-grid">
+      <button (click)="submit()"  [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block" >Log In</button>
+    </div>
+   
+    {{state |json}}
+    <!-- @if (loginForm.) { -->
+    <!-- }@else {
+      <div class="d-grid">
+          <button class="btn btn-primary" disabled>
+            <span class="spinner-border spinner-border-sm"></span>
+             Loading...
+          </button>
+      </div> 
+    } -->
+   </form>
+   <!-- {{users | json}} -->
+   <div class="d-grid">
+    <!-- @for (prod of products ; track prod.id) {
+        <p>{{prod.title}} </p>
+       }@empty {
+        Cargando...
+       } -->
+       <button  (click)="logOut()" class="btn btn-secondary btn-block"  >cerrar Sesion</button>
+   </div>
+   <div class="d-grid">
+    <button  (click)="loginWithGoogle()" class="btn btn-danger btn-block" >Google</button>
+  </div>
+</section>

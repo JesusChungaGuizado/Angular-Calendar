@@ -1,0 +1,34 @@
+<p>fullcalendar works!</p>
+<button (click)="loadCalendars()" >Listra Calendarios</button>
+<button (click)="loadEvents()" >Listar eventos</button>
+<!-- <button (click)="createEvent()" >Crear Evento botin</button> -->
+<!-- <button (click)="updateEvent()" >Update evento</button> -->
+<!-- <button (click)="getEventId()" >getEvento</button> -->
+<!-- <button (click)="destroyEventById()" >eliminar evento</button> -->
+<!-- Modal para Registrar -->
+<button data-bs-toggle="modal" data-bs-target="#myModalCalendarRegister"  >Registrar evento evento</button>
+<app-modal titulo="Registrar evento" idModal="myModalCalendarRegister"   >
+  <app-calendar-form eventForm="register"  [message]="message" labelBoton="Registar" (submitRegister)="createEvent($event)" />
+</app-modal>
+<!-- Modal para Actualizar -->
+<app-modal titulo="Editar evento" idModal="myModalCalendarUpdate"  >
+  <app-calendar-form eventForm="update" [message]="message" labelBoton="Actualizar" [evento]="evento" (submitDelete)="deleteEvent($event)" (submitUpdate)="updateEvent($event)" />
+</app-modal>
+<button class="btn btn-primary" 
+        data-bs-toggle="modal" 
+        data-bs-target="#myModalCalendarRegister">
+        <i class="fas fa-edit" ></i>
+</button>
+<div class='demo-app-main'>
+    <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
+      <ng-template #eventContent let-arg>
+        <!-- <div class="fc-daygrid-event-dot" ></div> -->
+        <div class="w-100 h-100 d-flex gap-1 " data-bs-toggle="modal" data-bs-target="#myModalCalendarUpdate">
+          <div>{{ arg.timeText }}</div>
+          <div class="text-truncate"  >{{ arg.event.title }}</div>
+        </div>
+      </ng-template>
+    </full-calendar>
+  
+  </div>
+  

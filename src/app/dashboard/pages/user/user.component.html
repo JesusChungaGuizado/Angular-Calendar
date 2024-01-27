@@ -1,0 +1,47 @@
+<!-- @if (authService.isAuthenticated()) {
+    <div>
+        <h2>Calendarios Disponibles</h2>
+        <ul>
+            <li *ngFor="let calendar of calendars" (click)="loadEvents(calendar.id)">
+                {{ calendar.summary }}
+            </li>
+        </ul>
+        <h2>Eventos del Calendario Seleccionado</h2>
+        <ul>
+            <li *ngFor="let event of calendarEvents">{{ event.summary }}</li>
+        </ul>
+    </div>
+   
+<!-- }  -->
+@if (!authService.isAuthenticated()) {
+    <button (click)="authService.login()">Iniciar Sesión con Google</button>
+}
+
+<h2>Mi calendario</h2>
+<!-- {{calendarEvents | json }} -->
+<button (click)="loadCalendars()" >Listra Calendarios</button>
+<button (click)="createEvent()" >Crear Evento botin</button>
+<button (click)="loadEvents()" >Listar eventos</button>
+<button (click)="updateEvent()" >Update evento</button>
+<button (click)="getEventId()" >getEvento</button>
+<button (click)="destroyEventById()" >eliminar evento</button>
+
+<div>
+    <h2>Crear Nuevo Evento</h2>
+    <form   >
+      <label for="eventSummary">Resumen:</label>
+      <input id="eventSummary"   required />
+
+      <label for="eventDescription">Descripción:</label>
+      <input id="eventDescription"  />
+
+      <label for="eventStartDate">Fecha de Inicio:</label>
+      <input id="eventStartDate"  type="datetime-local" required />
+
+      <label for="eventEndDate">Fecha de Fin:</label>
+      <input id="eventEndDate"  type="datetime-local" required />
+
+      <button type="submit">Crear Evento</button>
+    </form>
+    {{newEvent | json}}
+  </div>

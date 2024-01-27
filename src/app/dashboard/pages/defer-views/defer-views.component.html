@@ -1,0 +1,41 @@
+<app-title title="Defer Views works" />
+<section>
+   
+    <!-- Carga el componete cuando esta listo -->
+    @defer () {
+        <app-heavy-loaders-slow />
+    }@placeholder {
+        <div style="width: 100%;height: 500px;" >
+            Cargando---
+        </div>
+    }
+    <!-- Carga el componete cuando llega a la vista a el -->
+    @defer (on viewport ) {
+        <app-heavy-loaders-slow/>
+    }@placeholder {
+        <div style="width: 100%;height: 500px;" >
+            Cargando---
+        </div>
+    }
+    @defer (on viewport) {
+        <app-heavy-loaders-slow/>
+    }@placeholder {
+        <div style="width: 100%;height: 500px;" >
+            Cargando---
+        </div>
+    }
+    @defer (on viewport) {
+        <app-heavy-loaders-slow/>
+    }@placeholder {
+        <div style="width: 100%;height: 500px;" >
+            Cargando---
+        </div>
+    }
+    @defer (on viewport) {
+        <app-heavy-loaders-slow/>
+    }@placeholder {
+        <div style="width: 100%;height: 500px;" >
+            Cargando---
+        </div>
+    }
+</section>

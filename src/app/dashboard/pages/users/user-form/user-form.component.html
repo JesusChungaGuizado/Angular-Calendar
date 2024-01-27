@@ -1,0 +1,38 @@
+<form  [formGroup]="userForm" (submit)="handleSubmitForm()" >
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" formControlName="name"  class="form-control" id="name" placeholder="Enter name" name="name">
+        <label for="name">Name</label>
+        @if (userForm.controls.name.errors && userForm.controls.name.touched ) {
+            <small class="text-danger">Ingrese un nombre</small>
+        }
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" formControlName="last_name" class="form-control" id="last_name" placeholder="Enter name" name="last_name">
+        <label for="last_name">last_name</label>
+        @if (userForm.controls.last_name.errors && userForm.controls.last_name.touched ) {
+            <small class="text-danger">Ingrese un last_name</small>
+        }
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" formControlName="dni" class="form-control" id="dni" placeholder="Enter dni" name="dni">
+        <label for="dni">Dni</label>
+        @if (userForm.controls.dni.errors && userForm.controls.dni.touched ) {
+            <small class="text-danger">Ingrese un dni</small>
+        }
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        <label for="email">Email</label>
+        @if (userForm.controls.email.errors && userForm.controls.email.touched ) {
+            <small class="text-danger">Ingrese un correo electronico correcto</small>
+        }
+    </div>
+   
+    <div class="d-grid">
+      <button  type="submit" [disabled]="userForm.invalid" class="btn btn-primary btn-block" >Log In</button>
+    </div>
+ 
+  
+   </form>
+  
+   

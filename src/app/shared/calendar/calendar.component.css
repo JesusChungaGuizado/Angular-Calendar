@@ -1,0 +1,23 @@
+.calendar{
+    width: 100% !important;
+    margin-left: 0%;
+}
+
+/* td {
+    position: relative;
+  }
+  
+  .event {
+    position: absolute;
+    width: 100%;
+    background-color: #6aa84f;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 2px;
+    margin-bottom: 2px;
+  }
+  
+  .day-label {
+    text-align: center;
+    font-weight: bold;
+  } */

@@ -1,0 +1,127 @@
+<!-- <h1>Mi Calendario Plugin</h1>
+<smart-scheduler #scheduler id="scheduler" [dataSource]="dataSource" [view]="view" [views]="views"
+    [hourStart]="hourStart" [timelineDayScale]="timelineDayScale"></smart-scheduler> -->
+    <div class="container mt-5 ">
+        <div class="row">
+          <div class="col-md-6 offset-md-3 calendar">
+            <h2 class="text-center mb-4">
+              {{ currentMonth | date: 'MMMM yyyy' }}
+            </h2>
+            <div class="text-center mb-2">
+              <button class="btn btn-primary" (click)="previousMonth()">Anterior</button>
+              <button class="btn btn-primary" (click)="goToToday()">Hoy</button>
+              <button class="btn btn-primary" (click)="nextMonth()">Siguiente</button>
+            </div>
+            <div class="btn-group mb-2" role="group" aria-label="Vistas">
+              <!-- <button class="btn btn-secondary" [class.active]="selectedView === CalendarView.Month" (click)="changeView(CalendarView.Month)">Mes</button>
+              <button class="btn btn-secondary" [class.active]="selectedView === CalendarView.Week" (click)="changeView(CalendarView.Week)">Semana</button>
+              <button class="btn btn-secondary" [class.active]="selectedView === CalendarView.Day" (click)="changeView(CalendarView.Day)">Día</button>
+              <button class="btn btn-secondary" [class.active]="selectedView === CalendarView.List" (click)="changeView(CalendarView.List)">Lista</button> -->
+            </div>
+            <!-- <div *ngIf="selectedView === CalendarView.Month"> -->
+              <!-- Lógica para mostrar vista de mes -->
+              <!-- Puedes usar la tabla del calendario que tenías antes -->
+              <table class="table table-bordered r" >
+                <thead>
+                  <tr>
+                    <th scope="col">Dom</th>
+                    <th scope="col">Lun</th>
+                    <th scope="col">Mar</th>
+                    <th scope="col">Mié</th>
+                    <th scope="col">Jue</th>
+                    <th scope="col">Vie</th>
+                    <th scope="col">Sáb</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week" [class.text-muted]="day === 0" (click)="handleDayClick(day)">{{ day !== 0 ? day : '' }}</td>
+                  </tr> -->
+                  <!-- <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week">
+                      <div class="day" *ngIf="day !== 0" (click)="handleDayClick(day)">
+                        {{ day }}
+                        <div *ngFor="let event of getMonthEvents()">
+                          <div *ngIf="isEventOnDay(event, day)" class="event" [style.background-color]="event.backgroundColor">
+                            {{ event.title }}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr> -->
+                  <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week">
+                      <div class="day" *ngIf="day !== 0" (click)="handleDayClick(day)">
+                        {{ day }}
+                        <div *ngFor="let event of getMonthEvents()">
+                          @if (isEventOnDay(event, day)) {
+                            <div class="event" 
+                              [style.background-color]="event.color" 
+                              [style.color]="event.textColor"
+                              (click)="getEventData(event)"
+                            >
+                              {{ event.title }}
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- <div *ngIf="selectedView === CalendarView.Week"> -->
+              <!-- Lógica para mostrar vista de semana -->
+              <!-- Puedes adaptar la presentación según la vista de la semana -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th *ngFor="let day of getWeekDays()">
+                        {{ day | date: 'EEE' }}<br>
+                        {{ day | date: 'dd/MM' }}
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let hour of getHours()">
+                    <th>{{ hour }}</th>
+                    <td *ngFor="let day of getWeekDays()  ">
+                                       <div class="event" *ngFor="let event of getEventsForDayAndHour(day, hour)"  >
+                        {{ event.name }}
+                      </div>
+                    </td>
+                  </tr> -->
+                  <!-- <tr *ngFor="let hour of getHours()">
+                    <th>{{ hour }}</th>
+                    <td *ngFor="let day of getWeekDays()">
+                      <div class="event" *ngFor="let event of getWeekEvents(day, hour)" (click)="handlesWeekEventClick(event)" [style.background-color]="event.color">
+                        {{ event.title }}
+                      </div>
+                    </td>
+                  </tr> -->
+                  <tr *ngFor="let hour of getHours(); let i = index">
+                    <th>{{ hour }}</th>
+                    <td *ngFor="let day of getWeekDays(); let j = index">
+                      <div class="event" *ngFor="let event of getWeekEvents(day, hour, j)">
+                        {{ event.title }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- <div *ngIf="selectedView === CalendarView.Day"> -->
+              
+              <p>Mostrar vista de día aquí</p>
+             
+            </div>
+            <!-- <div *ngIf="selectedView === CalendarView.List"> -->
+              <!-- Lógica para mostrar vista de lista -->
+              <!-- Puedes adaptar la presentación según la vista de la lista -->
+              <p>Mostrar vista de lista aquí</p>
+            <!-- </div> -->
+          <!-- </div>
+        </div>
+      </div>
+       -->

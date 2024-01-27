@@ -1,0 +1,73 @@
+<app-title title="Control Flow" withShadow />
+<section class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4  gap-2 ">
+        <div class="card col">
+            <h4>Sentencia IF</h4>
+            <p>{{showContent()}}</p>
+            <div >
+                <button class="btn btn-outline-primary  " (click)="setShowContent()" >Click me !</button>
+            </div>
+            <div  >
+                @if (showContent()) {
+                    <p class="alert alert-success mt-2">Hola Jesus Dev !</p>
+                }@else {
+                    <p class="alert alert-warning mt-2">Has clic!!</p>
+                }
+            </div>
+        </div>
+
+        <div class="card col">
+            <h4>Sentencia Switch </h4>
+            <p>Este es el grado:{{showGrade()}}</p>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary" (click)="toogleGrade('A')" >A !</button>
+                <button class="btn btn-outline-primary" (click)="toogleGrade('B')" >B !</button>
+                <button class="btn btn-outline-primary" (click)="toogleGrade('C')" >C !</button>
+            </div>
+            <div>
+                @switch (showGrade()) {
+                    @case ('A') {
+                        <p class="alert alert-success mt-2">Excelente!!</p>
+                    }
+                    @case ('B') {
+                        <p class="alert alert-light mt-2">Bien!!</p>
+                    }
+                    @default {
+                        <p class="alert alert-danger mt-2">Por mejorar!!</p>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="card col">
+            <h4>Sentencia For </h4>
+            
+            <div>
+                @for (framework of frameworks(); track framework;
+                let i=$index,first=$first,last=$last,even=$even,odd=$odd,count=$count ) {
+                    <p class="alert al  mt-2" [class]="{
+                        'alert-danger':first || last,
+                        'alert-success':odd && !first && !last,
+                        'alert-info':even && !first && !last,
+
+                    }" >$index {{i}} - Total:{{count}} - {{framework}}  </p>
+                }
+            </div>
+            
+        </div>
+        <div class="card col">
+            <h4>Sentencia For /Empty</h4>
+            
+            <div>
+                @for (framework of frameworks2(); track framework ) {
+                    <p class="alert  mt-2"  >{{framework}}  </p>
+                }@empty {
+                    <p class="alert alert-dark " >No se enontro frameworks </p>
+                }
+            </div>
+            
+        </div>
+        
+    </div>
+    <app-user/>
+</section>

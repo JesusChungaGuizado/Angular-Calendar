@@ -1,0 +1,59 @@
+<div class="table-responsive">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalRegister">
+        Registar
+    </button>
+    <!-- Modal Register -->
+    <app-modal titulo="Registrar usuario" idModal="myModalRegister" (closeModal)="closeModal()" >
+        <app-user-form eventForm="register"  (submitRegister)="registerUser($event)" />
+    </app-modal>
+    <!-- Modal Update -->
+    <app-modal titulo="Update Usuario" idModal="myModal" (closeModal)="closeModal()" >
+       <app-user-form eventForm="update" [user]="user" (submitUpdate)="updateUser($event)" />
+   </app-modal>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>dni</th>
+                <th>email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of users; track user.id ) {
+                <tr>
+                    <td>{{user.id}} </td>
+                    <td>{{user.name}} </td>
+                    <td>{{user.last_name}} </td>
+                    <td>{{user.dni}} </td>
+                    <td>{{user.email}} </td>
+                    <td class="d-flex gap-2">
+                        <button class="btn btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#myModal" 
+                            (click)="getUser(user.id)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <a [routerLink]="['/dashboard/user',user.id]">{{user.name}}</a>
+                        <button (click)="deleteUser(user.id)" class="btn btn-danger" ><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            }@empty {
+                <tr>
+                    <td colspan="6">
+                        <div class="d-flex justify-content-center align-items-center gap-3 ">
+                            <div class="spinner-border text-primary"></div>
+                            <span>Cargando...</span>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- <button (click)="registerUser()" >Regsitrar</button> -->
+    {{message | json}}
+  </div>

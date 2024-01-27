@@ -1,0 +1,89 @@
+<form  [formGroup]="calendarForm" (submit)="handleSubmitForm()" >
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" formControlName="summary"  class="form-control" id="summary" placeholder="Enter Titulo" name="summary">
+        <label for="summary">Titulo</label>
+        @if (calendarForm.controls.summary.errors && calendarForm.controls.summary.touched ) {
+            <small class="text-danger">Ingrese un Titulo</small>
+        }
+    </div>
+    <div class="form-floating mb-3 mt-3">
+        <textarea  formControlName="description" class="form-control" id="Descripción" placeholder="Enter descripcion" name="Descripción"></textarea>
+        <label for="last_name">Descripción</label>
+        @if (calendarForm.controls.description.errors && calendarForm.controls.description.touched ) {
+            <small class="text-danger">Ingrese una descripcion</small>
+        }
+    
+        
+    </div>
+    <div formGroupName="start">
+        <div class="form-floating mb-3 mt-3">
+            <input type="datetime-local"  formControlName="dateTime" class="form-control" id="date-start" placeholder="date-start" name="date-start">
+            <label for="date-start">Inicio de Actividad</label>
+            @if (calendarForm.controls.start.controls.dateTime.errors && calendarForm.controls.start.controls.dateTime.touched ) {
+                <small class="text-danger">ingrese una fecha de Inicio</small>
+            }
+        
+        </div>
+    </div>
+    <div formGroupName="end">
+        <div class="form-floating mb-3 mt-3">
+            <input type="datetime-local"  formControlName="dateTime" class="form-control" id="date-end" placeholder="date-end" name="date-end">
+            <label for="date-start">Fin de Actividad</label>
+            @if (calendarForm.controls.end.controls.dateTime.errors && calendarForm.controls.end.controls.dateTime.touched ) {
+                <small class="text-danger">ingrese una fecha de Fin</small>
+            }
+        
+        </div>
+    </div>
+ 
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" formControlName="searchTerm" (input)="buscarUsuarios()"  class="form-control" id="searchTerm" placeholder="searchTerm" name="searchTerm" >
+        <label for="searchInput" class="form-label">Buscar Usuario</label>
+        @if (calendarForm.controls.attendees.errors && calendarForm.controls.attendees.touched ) {
+            <small class="text-danger">Ingrese usuarios para la reunion</small>
+        }
+    </div>
+    <div *ngIf="usuariosEncontrados.length > 0">
+        <h5>Usuarios Encontrados:</h5>
+        <ul class="list-group">
+          @for (usuario of usuariosEncontrados; track usuario) {
+            <li class="list-group-item cursor-pointer" (click)="seleccionarUsuario(usuario)">
+              {{ usuario.email }}
+            </li>
+          }
+        </ul>
+      </div>
+      
+      <!-- Lista de Usuarios Seleccionados (Pills) -->
+      <div  *ngIf="calendarForm.controls.attendees.value">
+        <h5>Invitados del evento:</h5>
+        <div class="d-flex flex-wrap">
+          @for (usuario of calendarForm.controls.attendees.value || null ; track usuario) {
+            <span class="badge bg-primary me-2 mb-2" >
+              {{ usuario.email }} <span (click)="deseleccionarUsuario(usuario)" class="ms-2 cursor-pointer">×</span>
+            </span>
+          }@empty {
+            <span>No hay invitados</span>
+          }
+        </div>
+       
+      </div>
+    
+    <div class="d-grid">
+      <button  type="submit" [disabled]="calendarForm.invalid" class="btn btn-primary btn-block" > {{labelBoton}} </button>
+    </div>
+    <div class="d-grid">
+      <button  type="button"  (click)="handleSubmitDelete()" class="btn btn-danger btn-block" > Eliminar </button>
+    </div>
+    <!-- Mensaje de validacion -->
+    @if(message){
+      <div class=" mt-3 alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> {{message}}
+      </div>
+    }
+   
+  </form>
+  
+
+ 
