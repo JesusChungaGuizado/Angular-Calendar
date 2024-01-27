@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+.nav-link{
+    color:var(--bs-gray-700) !important;
+}
+.active{
+   color: var(--bs-primary) !important;
+}
+
+/* Estilo para los encabezados y el numero de fecha del calendario */
+.fc .fc-col-header-cell-cushion ,.fc .fc-daygrid-day-number {
+    text-decoration: none !important;
+    color: black;
+    font-weight: normal;
+}
+
+/* Estilo para los items que tienen solo fecha*/
+/* .fc-event{
+    border-color: #3788D8 !important;
+} */
+/* .fc-event-main{
+    background: #3788D8;
+    border: none !important;
+    
+} */
+/* Estilo para los items que tienen hora y fecha */
+
+.fc-daygrid-event{
+    background: #3788D8 !important;
+    color: white !important;
+    margin-top: 2px !important;
+    gap: 5px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+/* estilo calendario mes  */
+.fc-timegrid-event .fc-event-main .d-flex {
+    flex-direction: column;
+
+}

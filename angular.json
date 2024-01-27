@@ -25,9 +25,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -55,6 +62,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": false
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular17-proy:build:production"
@@ -84,6 +94,8 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/smart-webcomponents-angular/source/styles/bootstrap/smart.bootstrap.css",
+              "./node_modules/smart-webcomponents-angular/source/styles/smart.default.css",
               "src/styles.css"
             ],
             "scripts": []
